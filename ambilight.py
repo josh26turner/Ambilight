@@ -1,6 +1,7 @@
 import subprocess
 import random
 import time
+from serial import Serial
 from PIL import Image
 
 PIXELS_TO_PROCESS = 100
@@ -83,6 +84,8 @@ while True:
         totalB //= 10
 
         rightLEDArray[i] = (totalR, totalG, totalB)
+
+    ser = Serial('/dev/tty.usbserial', 9600)
 
     end = time.time()
     break
