@@ -1,8 +1,6 @@
 import subprocess
 import random
 import time
-from typing import List, Tuple
-
 from serial import Serial
 from PIL import Image
 
@@ -13,9 +11,9 @@ VERTICAL_PIXEL_GAP = 120
 HORIZONTAL_PIXEL_COUNT = 2560
 VERTICAL_PIXEL_COUNT = 1440
 
-leftLEDArray: List[Tuple[int, int, int]] = [(0, 0, 0)] * 15
-topLEDArray: List[Tuple[int, int, int]] = [(0, 0, 0)] * 30
-rightLEDArray: List[Tuple[int, int, int]] = [(0, 0, 0)] * 15
+leftLEDArray = [(0, 0, 0)] * 15
+topLEDArray = [(0, 0, 0)] * 30
+rightLEDArray = [(0, 0, 0)] * 15
 
 start = time.time()
 
@@ -89,7 +87,7 @@ while True:
 
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    # ser = Serial('/dev/tty', 9600)
+    ser = Serial('/dev/ttyUSB0', 9600)
     break
 
 end = time.time()
