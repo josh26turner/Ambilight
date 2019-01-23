@@ -18,10 +18,10 @@ rightLEDArray = [(0, 0, 0)] * 15
 start = time.time()
 
 while True:
-    subprocess.call('./scrot.sh')
+    subprocess.call('./scrot.sh')  # Taking a screenshot
 
-    im = Image.open('screenshots/img.png')
-    pix = im.load()
+    im = Image.open('screenshots/img.png')  # Opening the screenshot
+    pix = im.load()  # Loading the screenshot into local memory
 
     # FILLING IN THE TOP LEDS
 
@@ -87,9 +87,9 @@ while True:
 
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    ser = Serial('/dev/ttyUSB0', 9600)
+    # ser = Serial('/dev/ttyUSB0', 9600)
     break
 
 end = time.time()
 
-print((end - start) ** -1)
+print((end - start))
