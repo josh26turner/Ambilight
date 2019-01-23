@@ -5,26 +5,24 @@
 CRGB leds[NUM_LEDS];
 
 void setup() { 
-     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+  Serial.begin(9600);
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+  for (int i = 0; i < 60; i ++){
+    leds[i] = CRGB(100,0,0);
+  }
+  FastLED.show();
 }
  
 void loop() { 
-  for (int i = 0; i < NUM_LEDS; i++){
-    leds[i] = CRGB::White; 
-    FastLED.show(); 
+  if (Serial.available() > 0){
+    for (int i = 0; i < NUM_LEDS; i ++){
+      if (Serial.available() > 0){
+        char b = Serial.read();
+        char r = Serial.read();
+        char g = Serial.read();
+        leds[i] = CRGB(r, g, b);
+        FastLED.show();
+      }
+    }
   }
-  for (int i = 0; i < NUM_LEDS; i++){
-    leds[i] = CRGB::Red; 
-    FastLED.show(); 
-  }
-  for (int i = 0; i < NUM_LEDS; i++){
-    leds[i] = CRGB(0,255,0); 
-    FastLED.show(); 
-  }
-  for (int i = 0; i < NUM_LEDS; i++){
-    leds[i] = CRGB::Blue; 
-    FastLED.show(); 
-  }
-    FastLED.show(); 
-    delay(30); 
 }

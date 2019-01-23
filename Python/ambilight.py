@@ -1,10 +1,9 @@
 import subprocess
 import random
-import time
 from serial import Serial
 from PIL import Image
 
-PIXELS_TO_PROCESS = 80
+PIXELS_TO_PROCESS = 200
 PIXELS_PER_LED = 80
 HORIZONTAL_PIXEL_GAP = 80
 VERTICAL_PIXEL_GAP = 120
@@ -15,17 +14,12 @@ NUMBER_LEDS = 60
 leftLEDArray = [(0, 0, 0)] * 15
 topLEDArray = [(0, 0, 0)] * 30
 rightLEDArray = [(0, 0, 0)] * 15
-
-
-start = time.time()
+ser = Serial('/dev/ttyUSB0', 9600, timeout=5)
 
 while True:
-    t1 = time.time()
-    subprocess.call('./scrot.sh')  # Taking a screenshot
-    t2 = time.time()
-    print(t2 - t1)
+    subprocess.call('/code/Ambilight/Python/scrot.sh')  # Taking a screenshot
 
-    im = Image.open('screenshots/img.png')  # Opening the screenshot
+    im = Image.open('/code/Ambilight/Python/screenshots/img.png')  # Opening the screenshot
     pix = im.load()  # Loading the screenshot into local memory
 
     # FILLING IN THE TOP LEDS
@@ -92,15 +86,9 @@ while True:
 
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    ser = Serial('/dev/ttyUSB0', 9600)
-
     for i in range(NUMBER_LEDS):
         ser.write((LEDArray[i][0]).to_bytes(1, byteorder='big'))
         ser.write((LEDArray[i][1]).to_bytes(1, byteorder='big'))
         ser.write((LEDArray[i][2]).to_bytes(1, byteorder='big'))
 
-    break
 
-end = time.time()
-
-print((end - start) ** -1)
