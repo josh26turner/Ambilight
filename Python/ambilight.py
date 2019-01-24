@@ -14,7 +14,7 @@ NUMBER_LEDS = 60
 leftLEDArray = [(0, 0, 0)] * 15
 topLEDArray = [(0, 0, 0)] * 30
 rightLEDArray = [(0, 0, 0)] * 15
-ser = Serial('/dev/ttyUSB1', 9600, timeout=5)
+ser = Serial('/dev/ttyUSB0', 9600, timeout=5)
 
 while True:
     subprocess.call('/code/Ambilight/Python/scrot.sh')  # Taking a screenshot
