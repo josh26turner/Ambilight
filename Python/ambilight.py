@@ -84,12 +84,12 @@ while True:
 
         rightLEDArray[i] = (totalR, totalG, totalB)
 
-    LEDArray = leftLEDArray + topLEDArray + rightLEDArray
+    LEDArray = leftLEDArray + topLEDArray + rightLEDArray + [(1, 1, 1), (1, 1, 1)]
 
     ser.write(1)
     ser.write(1)
 
-    for i in range(NUMBER_LEDS):
+    for i in range(NUMBER_LEDS + 2):
         ser.write((LEDArray[i][0]).to_bytes(1, byteorder='big'))
         ser.write((LEDArray[i][1]).to_bytes(1, byteorder='big'))
         ser.write((LEDArray[i][2]).to_bytes(1, byteorder='big'))
