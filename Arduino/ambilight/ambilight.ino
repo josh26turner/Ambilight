@@ -8,19 +8,22 @@ void setup() {
   Serial.begin(9600);
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   for (int i = 0; i < 60; i ++){
-    leds[i] = CRGB(100,0,0);
+    leds[i] = CRGB(255,0,0);
   }
   FastLED.show();
 }
  
 void loop() { 
   if (Serial.available() > 0){
+    char x = Serial.read();
     for (int i = 0; i < NUM_LEDS; i ++){
       if (Serial.available() > 0){
-        char b = Serial.read();
         char r = Serial.read();
         char g = Serial.read();
-        leds[i] = CRGB(r, g, b);
+        char b = Serial.read();
+        int index = i - 2;
+        if (index < 0) index += NUM_LEDS;
+        leds[index] = CRGB(r, g, b);
         FastLED.show();
       }
     }
