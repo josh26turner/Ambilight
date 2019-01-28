@@ -1,5 +1,5 @@
 #include <FastLED.h>
-#define NUM_LEDS 62
+#define NUM_LEDS 60
 #define DATA_PIN 2 // or D2
 
 CRGB leds[NUM_LEDS];
@@ -18,20 +18,18 @@ void setup() {
   }
   FastLED.show();
 }
- 
+
 void loop() { 
 }
 
 void serialEvent() {
-  for (int i = 0; i < NUM_LEDS; i ++){
-    if (Serial.available() > 0){
-      char r = Serial.read();
-      char g = Serial.read();
-      char b = Serial.read();
-      int index = i - 2;
-      if (index < 0) index += NUM_LEDS;
-      if (index < NUM_LEDS - 2) leds[index] = CRGB(r, g, b);
-      FastLED.show();
-    }
+  int len = NUM_LEDS * 3;
+  byte rawRGB [len];
+  
+  int b = Serial.readBytes(rawRGB, len);
+  
+  for (int i = 0; i < NUM_LEDS; i ++) {
+    leds[i] = CRGB(rawRGB[(i * 3)], rawRGB[(i * 3) + 1], rawRGB[(i * 3) + 2]);
   }
+  FastLED.show();
 }

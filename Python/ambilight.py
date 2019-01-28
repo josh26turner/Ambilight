@@ -11,9 +11,10 @@ HORIZONTAL_PIXEL_COUNT = 2560
 VERTICAL_PIXEL_COUNT = 1440
 NUMBER_LEDS = 60
 
-leftLEDArray = [(0, 0, 0)] * 15
-topLEDArray = [(0, 0, 0)] * 30
-rightLEDArray = [(0, 0, 0)] * 15
+leftLEDArray = [0] * (15 * 3)
+topLEDArray = [0] * (30 * 3)
+rightLEDArray = [0] * (15 * 3)
+
 ser = Serial('/dev/ttyUSB0', 9600, timeout=5)
 
 while True:
@@ -36,15 +37,14 @@ while True:
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
 
-        totalR //= PIXELS_TO_PROCESS
-        totalG //= PIXELS_TO_PROCESS
-        totalB //= PIXELS_TO_PROCESS
-
-        topLEDArray[i] = (totalR, totalG, totalB)
+        topLEDArray[(i * 3) + 0] = totalR // PIXELS_TO_PROCESS
+        topLEDArray[(i * 3) + 1] = totalG // PIXELS_TO_PROCESS
+        topLEDArray[(i * 3) + 2] = totalB // PIXELS_TO_PROCESS
 
     # FILLING IN THE LEFT LEDS
 
-    for i in range(15):
+    for k in range(15):
+        i = 15 - k - 1
         totalR = 0
         totalG = 0
         totalB = 0
@@ -56,13 +56,9 @@ while True:
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
 
-        totalR //= PIXELS_TO_PROCESS
-        totalG //= PIXELS_TO_PROCESS
-        totalB //= PIXELS_TO_PROCESS
-
-        leftLEDArray[i] = (totalR, totalG, totalB)
-
-    leftLEDArray.reverse()
+        leftLEDArray[(i * 3) + 0] = totalR // PIXELS_TO_PROCESS
+        leftLEDArray[(i * 3) + 1] = totalG // PIXELS_TO_PROCESS
+        leftLEDArray[(i * 3) + 2] = totalB // PIXELS_TO_PROCESS
 
     # FILLING IN THE RIGHT LEDS
 
@@ -78,20 +74,10 @@ while True:
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
 
-        totalR //= PIXELS_TO_PROCESS
-        totalG //= PIXELS_TO_PROCESS
-        totalB //= PIXELS_TO_PROCESS
+        rightLEDArray[(i * 3) + 0] = totalR // PIXELS_TO_PROCESS
+        rightLEDArray[(i * 3) + 1] = totalG // PIXELS_TO_PROCESS
+        rightLEDArray[(i * 3) + 2] = totalB // PIXELS_TO_PROCESS
 
-        rightLEDArray[i] = (totalR, totalG, totalB)
+    LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    LEDArray = leftLEDArray + topLEDArray + rightLEDArray + [(1, 1, 1), (1, 1, 1)]
-
-    ser.write(1)
-    ser.write(1)
-
-    for i in range(NUMBER_LEDS + 2):
-        ser.write((LEDArray[i][0]).to_bytes(1, byteorder='big'))
-        ser.write((LEDArray[i][1]).to_bytes(1, byteorder='big'))
-        ser.write((LEDArray[i][2]).to_bytes(1, byteorder='big'))
-
-
+    ser.write(LEDArray)
