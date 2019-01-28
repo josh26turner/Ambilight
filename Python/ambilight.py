@@ -51,7 +51,7 @@ while True:
 
         for j in range(PIXELS_TO_PROCESS):
             x = random.randint(0, PIXELS_PER_LED)
-            y = random.randint(HORIZONTAL_PIXEL_GAP + i * PIXELS_PER_LED, HORIZONTAL_PIXEL_GAP + (i+1) * PIXELS_PER_LED)
+            y = random.randint(HORIZONTAL_PIXEL_GAP + k * PIXELS_PER_LED, HORIZONTAL_PIXEL_GAP + (k+1) * PIXELS_PER_LED)
             totalR += pix[x, y][0]
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
