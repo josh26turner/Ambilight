@@ -26,10 +26,10 @@ void serialEvent() {
   int len = NUM_LEDS * 3;
   byte rawRGB [len];
   
-  int b = Serial.readBytes(rawRGB, len);
+  int b = Serial.readBytes(rawRGB, len + 5);
   
   for (int i = 0; i < NUM_LEDS; i ++) {
-    leds[i] = CRGB(rawRGB[(i * 3)], rawRGB[(i * 3) + 1], rawRGB[(i * 3) + 2]);
+    leds[i] = CRGB(rawRGB[(i * 3) + rawRGB[0]], rawRGB[(i * 3) + rawRGB[0] + 1], rawRGB[(i * 3) + rawRGB[0] + 2]);
   }
   FastLED.show();
 }

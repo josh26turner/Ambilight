@@ -80,4 +80,6 @@ while True:
 
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    ser.write(LEDArray)
+    prefix = [5, 4, 3, 2, 1]
+
+    ser.write(prefix + LEDArray)
