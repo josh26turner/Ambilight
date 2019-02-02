@@ -15,6 +15,8 @@ leftLEDArray = [0] * (15 * 3)
 topLEDArray = [0] * (30 * 3)
 rightLEDArray = [0] * (15 * 3)
 
+subprocess.call('/code/Ambilight/Python/mktmpdir.sh')
+
 ser = Serial('/dev/ttyUSB0', 9600, timeout=5)
 
 while True:

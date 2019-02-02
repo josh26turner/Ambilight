@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mkdir /tmp/Ambilight/
+mkdir -p /tmp/Ambilight/
