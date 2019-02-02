@@ -1,3 +1,3 @@
 #!/bin/bash
 
-scrot --quality 100 /code/Ambilight/Python/screenshots/img.png
+scrot --quality 100 /tmp/Ambilight/img.png
