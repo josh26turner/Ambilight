@@ -17,7 +17,7 @@ rightLEDArray = [0] * (15 * 3)
 
 subprocess.call('/code/Ambilight/Python/mktmpdir.sh')
 
-ser = Serial('/dev/ttyUSB0', 9600, timeout=5)
+ser = Serial('/dev/ttyUSB0', 115200)
 
 while True:
     subprocess.call('/code/Ambilight/Python/scrot.sh')  # Taking a screenshot
@@ -82,6 +82,4 @@ while True:
 
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
-    prefix = [5, 4, 3, 2, 1]
-
-    ser.write(prefix + LEDArray)
+    ser.write(LEDArray)

@@ -5,7 +5,7 @@
 CRGB leds[NUM_LEDS];
 
 void setup() { 
-  Serial.begin(9600);
+  Serial.begin(115200);
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   for (int i = 0; i < 15; i ++){
     leds[i] = CRGB(0,0,255);
@@ -20,16 +20,24 @@ void setup() {
 }
 
 void loop() { 
-}
-
-void serialEvent() {
-  int len = NUM_LEDS * 3;
-  byte rawRGB [len];
-  
-  int b = Serial.readBytes(rawRGB, len + 5);
-  
-  for (int i = 0; i < NUM_LEDS; i ++) {
-    leds[i] = CRGB(rawRGB[(i * 3) + rawRGB[0]], rawRGB[(i * 3) + rawRGB[0] + 1], rawRGB[(i * 3) + rawRGB[0] + 2]);
+  memset(leds, 0, NUM_LEDS * sizeof(struct CRGB));
+  // Read the transmission data and set LED values
+  for (uint8_t i = 0; i < NUM_LEDS; i++) {
+    byte r, g, b;    
+    while(!Serial.available());
+    r = Serial.read();
+    while(!Serial.available());
+    g = Serial.read();
+    while(!Serial.available());
+    b = Serial.read();
+    leds[minusOne(i)].r = r;
+    leds[minusOne(i)].g = g;
+    leds[minusOne(i)].b = b;
   }
   FastLED.show();
+}
+
+int minusOne(int i) {
+  if (i > 0) return i - 1;
+  else return 59;
 }
