@@ -1,5 +1,7 @@
 import subprocess
 import random
+import time
+
 from serial import Serial
 from PIL import Image
 
@@ -22,7 +24,7 @@ ser = Serial('/dev/ttyUSB0', 115200)
 while True:
     subprocess.call('/code/Ambilight/Python/scrot.sh')  # Taking a screenshot
 
-    im = Image.open('/tmp/Ambilight/img.png')  # Opening the screenshot
+    im = Image.open('/tmp/Ambilight/img.jpg')  # Opening the screenshot
     pix = im.load()  # Loading the screenshot into local memory
 
     # FILLING IN THE TOP LEDS
