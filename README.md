@@ -1,2 +1,3 @@
 # Ambillight
-scrot -> python processing -> arduino -> leds
+`gcc C/main.c -l X11`
+
