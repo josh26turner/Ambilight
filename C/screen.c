@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
+#include <GL/gl.h>
 
 #define NUM_LEDS 60
 #define PIXELS_TO_PROCESS 50
@@ -21,15 +22,13 @@ int randint(int min, int max) {
     return min + (rand() % (max - min));
 }
 
-unsigned char * im(Display *d){
-    unsigned char * values = malloc(sizeof(char) * (NUM_LEDS * 3));
+void im(Display *d, unsigned char values[]){
     srand((unsigned) time(NULL));
-
 
     XColor c;
 
     XImage *image;
-    image = XGetImage(d, RootWindow(d, DefaultScreen(d)), 0, 0, 2560, 1440, AllPlanes, XYPixmap);
+    image = XGetImage(d, RootWindow(d, DefaultScreen(d)), 0, 0, 2560, 1440, AllPlanes, ZPixmap);
 
     //Filling the left side
 
@@ -104,7 +103,5 @@ unsigned char * im(Display *d){
         values[(45 * 3) + (i * 3) + 2] = totalB / PIXELS_TO_PROCESS;
     }
 
-    XFree(image);
-
-    return values;
+    XDestroyImage(image);
 }
