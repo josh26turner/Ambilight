@@ -10,7 +10,6 @@ PIXELS_PER_LED = 80
 HORIZONTAL_PIXEL_GAP = 80
 VERTICAL_PIXEL_GAP = 120
 HORIZONTAL_PIXEL_COUNT = 2560
-VERTICAL_PIXEL_COUNT = 1440
 NUMBER_LEDS = 60
 
 leftLEDArray = [0] * (15 * 3)
@@ -22,6 +21,7 @@ subprocess.call('/code/Ambilight/Python/mktmpdir.sh')
 ser = Serial('/dev/ttyUSB0', 115200)
 
 while True:
+    start = time.time()
     subprocess.call('/code/Ambilight/Python/scrot.sh')  # Taking a screenshot
 
     im = Image.open('/tmp/Ambilight/img.jpg')  # Opening the screenshot
@@ -55,7 +55,7 @@ while True:
 
         for j in range(PIXELS_TO_PROCESS):
             x = random.randint(0, PIXELS_PER_LED)
-            y = random.randint(HORIZONTAL_PIXEL_GAP + k * PIXELS_PER_LED, HORIZONTAL_PIXEL_GAP + (k+1) * PIXELS_PER_LED)
+            y = random.randint(VERTICAL_PIXEL_GAP + k * PIXELS_PER_LED, VERTICAL_PIXEL_GAP + (k+1) * PIXELS_PER_LED)
             totalR += pix[x, y][0]
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
@@ -73,7 +73,7 @@ while True:
 
         for j in range(PIXELS_TO_PROCESS):
             x = random.randint(HORIZONTAL_PIXEL_COUNT - PIXELS_PER_LED, HORIZONTAL_PIXEL_COUNT - 1)
-            y = random.randint(HORIZONTAL_PIXEL_GAP + i * PIXELS_PER_LED, HORIZONTAL_PIXEL_GAP + (i+1) * PIXELS_PER_LED)
+            y = random.randint(VERTICAL_PIXEL_GAP + i * PIXELS_PER_LED, VERTICAL_PIXEL_GAP + (i+1) * PIXELS_PER_LED)
             totalR += pix[x, y][0]
             totalG += pix[x, y][1]
             totalB += pix[x, y][2]
@@ -85,3 +85,6 @@ while True:
     LEDArray = leftLEDArray + topLEDArray + rightLEDArray
 
     ser.write(LEDArray)
+
+    end = time.time()
+    print(end-start)
