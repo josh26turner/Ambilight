@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
-#include <GL/gl.h>
 
 #define NUM_LEDS 60
 #define PIXELS_TO_PROCESS 50

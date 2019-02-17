@@ -12,6 +12,10 @@
 
 #include "screen.c"
 
+/*
+ * Can't do project without a stackoverflow reference...
+ * https://stackoverflow.com/a/6947758
+ */
 int set_interface_attribs (int fd, int speed, int parity)
 {
         struct termios tty;
