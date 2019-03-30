@@ -43,7 +43,7 @@ void im(Display *d, unsigned char values[]){
 
   //Filling the top side
 
-  for (int i = 0; i < LEDS_ON_SIDE; i++) {
+  for (int i = 0; i < LEDS_ON_TOP; i++) {
     int totalR = 0;
     int totalG = 0;
     int totalB = 0;
@@ -67,7 +67,7 @@ void im(Display *d, unsigned char values[]){
 
   //Filling the right side
 
-  for (int i = 0; i < LEDS_ON_TOP; i++) {
+  for (int i = 0; i < LEDS_ON_SIDE; i++) {
     int totalR = 0;
     int totalG = 0;
     int totalB = 0;
@@ -89,5 +89,5 @@ void im(Display *d, unsigned char values[]){
     values[(45 * 3) + (i * 3) + 2] = totalB / PIXELS_TO_PROCESS;
   }
 
-  XDestroyImage(image);
+  // XDestroyImage(image);
 }

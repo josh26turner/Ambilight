@@ -62,7 +62,6 @@ int main() {
 
   set_interface_attribs(fd, B115200, 0);
 
-
   while (True) {
     unsigned char *values = malloc(sizeof(char) * 180);
     im(d, values);
