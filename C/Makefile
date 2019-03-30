@@ -1,3 +1,3 @@
 make:
-	gcc main.c -l X11
+	gcc main.c screen.c -l X11
 	./a.out
