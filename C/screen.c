@@ -89,5 +89,5 @@ void im(Display *d, unsigned char values[]){
     values[(45 * 3) + (i * 3) + 2] = totalB / PIXELS_TO_PROCESS;
   }
 
-  // XDestroyImage(image);
+  XDestroyImage(image);
 }
