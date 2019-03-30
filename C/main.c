@@ -62,10 +62,12 @@ int main() {
 
   set_interface_attribs(fd, B115200, 0);
 
+  int len = 3 * (2 * LEDS_ON_SIDE + LEDS_ON_TOP);
+
   while (True) {
-    unsigned char *values = malloc(sizeof(char) * 180);
+    unsigned char *values = malloc(sizeof(char) * len);
     im(d, values);
-    write(fd, values, 180);
+    write(fd, values, len);
     free(values);
   }
 }
