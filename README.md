@@ -23,8 +23,8 @@ Dependencies:
 
 # Demo
 
-![](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.jpg)
+![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.jpg)
 
-![](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.mp4)
+![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.mp4)
 
-![Rockstar Games, Inc](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.mp4 "GTA V splash screen")
+![Rockstar Games, Inc](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.mp4 "GTA V splash screen")
