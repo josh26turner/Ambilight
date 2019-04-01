@@ -21,3 +21,10 @@ Dependencies:
 1. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
 1. Compile the C program `gcc C/main.c C/screen.c -l X11 -o ambilight` and run it using `./ambilight`
 
+# Demo
+
+![](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.jpg)
+
+![](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.mp4)
+
+![Rockstar Games, Inc](https://gitlab.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.mp4 "GTA V splash screen")
