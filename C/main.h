@@ -8,6 +8,7 @@
 #include <termios.h>
 #include <time.h>
 #include <unistd.h>
+#include <libconfig.h>
 
 #include "screen.h"
 
