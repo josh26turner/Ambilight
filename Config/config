@@ -1,10 +1,12 @@
-# Main configuration file 
+#Main configuration file 
 
 leds_on_top = 30;
 leds_on_side = 15;
 
-pixels_per_led = 80;
 pixels_to_process = 50;
+
+pixels_per_led_top = 80;
+pixels_per_led_side = 80;
 
 vertical_pixel_gap = 120;
 vertical_pixel_count = 1440;

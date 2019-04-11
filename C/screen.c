@@ -25,8 +25,8 @@ void im(Display *d, unsigned char values[]){
     int totalB = 0;
 
     for (int j = 0; j < pixels_to_process; j++) {
-      int x = randint(0, pixels_per_led);
-      int y = randint(vertical_pixel_gap + (k * pixels_per_led), vertical_pixel_gap + (k+1) * pixels_per_led);
+      int x = randint(0, pixels_per_led_side);
+      int y = randint(vertical_pixel_gap + (k * pixels_per_led_side), vertical_pixel_gap + (k+1) * pixels_per_led_side);
 
       c.pixel = XGetPixel(image, x, y);
       XQueryColor(d, DefaultColormap(d, DefaultScreen(d)), &c);
@@ -49,8 +49,8 @@ void im(Display *d, unsigned char values[]){
     int totalB = 0;
 
     for (int j = 0; j < pixels_to_process; j++) {
-      int x = randint(horizontal_pixel_gap + i * pixels_per_led, horizontal_pixel_gap + (i+1) * pixels_per_led);
-      int y = randint(0, pixels_per_led);
+      int x = randint(horizontal_pixel_gap + i * pixels_per_led_top, horizontal_pixel_gap + (i+1) * pixels_per_led_top);
+      int y = randint(0, pixels_per_led_top);
 
       c.pixel = XGetPixel(image, x, y);
       XQueryColor(d, DefaultColormap(d, DefaultScreen(d)), &c);
@@ -60,9 +60,9 @@ void im(Display *d, unsigned char values[]){
       totalB += c.blue/256;
     }
 
-    values[(15 * 3) + (i * 3) + 0] = totalR / pixels_to_process;
-    values[(15 * 3) + (i * 3) + 1] = totalG / pixels_to_process;
-    values[(15 * 3) + (i * 3) + 2] = totalB / pixels_to_process;
+    values[(leds_on_side * 3) + (i * 3) + 0] = totalR / pixels_to_process;
+    values[(leds_on_side * 3) + (i * 3) + 1] = totalG / pixels_to_process;
+    values[(leds_on_side * 3) + (i * 3) + 2] = totalB / pixels_to_process;
   }
 
   //Filling the right side
@@ -73,8 +73,8 @@ void im(Display *d, unsigned char values[]){
     int totalB = 0;
 
     for (int j = 0; j < pixels_to_process; j++) {
-      int x = randint(horizontal_pixel_count - pixels_per_led, horizontal_pixel_count - 1);
-      int y = randint(vertical_pixel_gap + i * pixels_per_led, vertical_pixel_gap + (i+1) * pixels_per_led);
+      int x = randint(horizontal_pixel_count - pixels_per_led_side, horizontal_pixel_count - 1);
+      int y = randint(vertical_pixel_gap + i * pixels_per_led_side, vertical_pixel_gap + (i+1) * pixels_per_led_side);
 
       c.pixel = XGetPixel(image, x, y);
       XQueryColor(d, DefaultColormap(d, DefaultScreen(d)), &c);
@@ -84,9 +84,9 @@ void im(Display *d, unsigned char values[]){
       totalB += c.blue/256;
     }
 
-    values[(45 * 3) + (i * 3) + 0] = totalR / pixels_to_process;
-    values[(45 * 3) + (i * 3) + 1] = totalG / pixels_to_process;
-    values[(45 * 3) + (i * 3) + 2] = totalB / pixels_to_process;
+    values[((leds_on_side + leds_on_top) * 3) + (i * 3) + 0] = totalR / pixels_to_process;
+    values[((leds_on_side + leds_on_top) * 3) + (i * 3) + 1] = totalG / pixels_to_process;
+    values[((leds_on_side + leds_on_top) * 3) + (i * 3) + 2] = totalB / pixels_to_process;
   }
 
   XDestroyImage(image);

@@ -70,8 +70,9 @@ int load_config() {
   config_lookup_int(&config, "leds_on_top", &leds_on_top);
   config_lookup_int(&config, "leds_on_side", &leds_on_side);
 
-  config_lookup_int(&config, "pixels_per_led", &pixels_per_led);
   config_lookup_int(&config, "pixels_to_process", &pixels_to_process);
+  config_lookup_int(&config, "pixels_per_led_top", &pixels_per_led_top);
+  config_lookup_int(&config, "pixels_per_led_side", &pixels_per_led_side);
 
   config_lookup_int(&config, "vertical_pixel_gap", &vertical_pixel_gap);
   config_lookup_int(&config, "vertical_pixel_count", &vertical_pixel_count);
