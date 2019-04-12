@@ -58,7 +58,8 @@ int load_config() {
   config_init(&config);
   char *filename = strcat(getenv("HOME"), "/.config/Ambilight/config");
 
-  int success = config_read_file(&config, "/home/josh/.config/Ambilight/config");
+  int success = config_read_file(&config, filename);
+
   if (success == CONFIG_FALSE) {
     printf("Error in reading config file: %s\n", config_error_file(&config));
     printf(config_error_text(&config));
@@ -71,6 +72,7 @@ int load_config() {
   config_lookup_int(&config, "leds_on_side", &leds_on_side);
 
   config_lookup_int(&config, "pixels_to_process", &pixels_to_process);
+  
   config_lookup_int(&config, "pixels_per_led_top", &pixels_per_led_top);
   config_lookup_int(&config, "pixels_per_led_side", &pixels_per_led_side);
 

@@ -3,15 +3,15 @@
 leds_on_top = 30;
 leds_on_side = 15;
 
-pixels_to_process = 50;
+pixels_to_process = 30;
 
-pixels_per_led_top = 80;
-pixels_per_led_side = 80;
+pixels_per_led_top = 85;
+pixels_per_led_side = 96;
 
-vertical_pixel_gap = 120;
+vertical_pixel_gap = 0;
 vertical_pixel_count = 1440;
 
-horizontal_pixel_gap = 80;
+horizontal_pixel_gap = 5;
 horizontal_pixel_count = 2560;
 
 arduino_device_name = "/dev/ttyUSB0";

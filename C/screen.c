@@ -18,7 +18,7 @@ void im(Display *d, unsigned char values[]){
   //Filling the left side
 
   for (int k = 0; k < leds_on_side; k++) {
-    int i = 15 - k -1;
+    int i = 15 - k - 1;
 
     int totalR = 0;
     int totalG = 0;
