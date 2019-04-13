@@ -17,7 +17,7 @@ Dependencies:
 1. Run `Config-Generator.py` to create a config file. Also change the data pin and number of LEDs in `Arduino/ambilight/ambilight.ino` to the correct values.
 1. Add your user to `uucp` so they have access to `/dev/ttyUSB[0-9]+`: `# usermod -a -G uucp "$USERNAME"`
 1. Copy the udev rule into the config folder: `# cp udev-rules/52-arduino.rules /etc/udev/rules.d`
-1. With the Arduino now being named `/dev/ttyUSB1` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name line 54 of `C/main.c` to the correct device name. Load up the Arduino IDE and install the `FastLED` library
+1. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name line 54 of `C/main.c` to the correct device name. Load up the Arduino IDE and install the `FastLED` library
 1. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
 1. Compile the C program `gcc C/main.c C/screen.c -l X11 -o ambilight` and run it using `./ambilight`
 
