@@ -4,6 +4,8 @@
 
 #include "main.h"
 
+const char *portname;
+
 /*
  * Can't do project without a stackoverflow reference...
  * https://stackoverflow.com/a/6947758
@@ -48,10 +50,47 @@ int set_interface_attribs (int fd, int speed, int parity)
   return 0;
 }
 
-int main() {
-  Display *d = XOpenDisplay((char *) NULL);
+/*
+ * Loading the config
+ */
+int load_config() {
+  config_t config;
+  config_init(&config);
+  char *filename = strcat(getenv("HOME"), "/.config/Ambilight/config");
 
-  char *portname = "/dev/ttyUSB0";
+  int success = config_read_file(&config, filename);
+
+  if (success == CONFIG_FALSE) {
+    printf("Error in reading config file: %s\n", config_error_file(&config));
+    printf(config_error_text(&config));
+    printf("\nOn line: %d", config_error_line(&config));
+    printf("\n");
+    return 1;
+  }
+
+  config_lookup_int(&config, "leds_on_top", &leds_on_top);
+  config_lookup_int(&config, "leds_on_side", &leds_on_side);
+
+  config_lookup_int(&config, "pixels_to_process", &pixels_to_process);
+  
+  config_lookup_int(&config, "pixels_per_led_top", &pixels_per_led_top);
+  config_lookup_int(&config, "pixels_per_led_side", &pixels_per_led_side);
+
+  config_lookup_int(&config, "vertical_pixel_gap", &vertical_pixel_gap);
+  config_lookup_int(&config, "vertical_pixel_count", &vertical_pixel_count);
+
+  config_lookup_int(&config, "horizontal_pixel_gap", &horizontal_pixel_gap);
+  config_lookup_int(&config, "horizontal_pixel_count", &horizontal_pixel_count);
+
+  config_lookup_string(&config, "arduino_device_name", &portname);
+
+  return 0;
+}
+
+int main() {
+  if (load_config()) return 1;
+
+  Display *d = XOpenDisplay((char *) NULL);
 
   int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
 
@@ -62,7 +101,7 @@ int main() {
 
   set_interface_attribs(fd, B115200, 0);
 
-  int len = 3 * (2 * LEDS_ON_SIDE + LEDS_ON_TOP);
+  int len = 3 * (2 * leds_on_side + leds_on_top);
 
   while (True) {
     unsigned char *values = malloc(sizeof(char) * len);
