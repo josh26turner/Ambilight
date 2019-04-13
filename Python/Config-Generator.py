@@ -50,6 +50,7 @@ pixels_per_led_side = vertical_pixel_count // leds_on_side
 horizontal_pixel_gap = (horizontal_pixel_count - (pixels_per_led_top * leds_on_top)) // 2
 vertical_pixel_gap = (vertical_pixel_count - (pixels_per_led_side * leds_on_side)) // 2
 
+os.mkdir(os.environ['HOME'] + "/.config/Ambilight/")
 config = open(os.environ['HOME'] + "/.config/Ambilight/config", "w+")
 
 config.write(f"leds_on_top = {leds_on_top};\n")
@@ -71,6 +72,6 @@ config.write(f"horizontal_pixel_gap = {horizontal_pixel_gap};\n")
 config.write(f"horizontal_pixel_count = {horizontal_pixel_count};\n")
 config.write("\n")
 
-config.write("arduino_device_name = \"/dev/ttyUSB0\";")
+config.write("arduino_device_name = \"/dev/ttyUSB0\";\n")
 
 print("If you have a different name for your Arduino (not /dev/ttyUSB0) put it in the config file.")
