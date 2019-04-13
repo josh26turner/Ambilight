@@ -76,4 +76,4 @@ config.write("\n")
 
 config.write("arduino_device_name = \"/dev/ttyUSB0\";\n")
 
-print("If you have a different name for your Arduino (not /dev/ttyUSB0) put it in the config file.")
+print("If you have a different name for your Arduino (not /dev/ttyUSB0) put it in the config file (~/.config/Ambilight/config)")
