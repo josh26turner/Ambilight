@@ -33,5 +33,5 @@ void loop() {
 
 int minusOne(int i) {
   if (i > 0) return i - 1;
-  else return 59;
+  else return NUM_LEDS - 1;
 }
