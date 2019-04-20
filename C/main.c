@@ -53,60 +53,58 @@ int set_interface_attribs (int fd, int speed, int parity)
 /*
  * Loading the config
  */
-int load_config() {
-  config_t config;
-  config_init(&config);
+int load_config(config_t* config) {
+  config_init(config);
   char *filename = strcat(getenv("HOME"), "/.config/Ambilight/config");
 
-  int success = config_read_file(&config, filename);
+  if (CONFIG_FALSE == config_read_file(config, filename)) return 1;
 
-  if (success == CONFIG_FALSE) {
-    printf("Error in reading config file: %s\n", config_error_file(&config));
-    printf(config_error_text(&config));
-    printf("\nOn line: %d", config_error_line(&config));
-    printf("\n");
-    return 1;
-  }
+  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_top", &leds_on_top)) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_side", &leds_on_side)) return 1;
 
-  config_lookup_int(&config, "leds_on_top", &leds_on_top);
-  config_lookup_int(&config, "leds_on_side", &leds_on_side);
-
-  config_lookup_int(&config, "pixels_to_process", &pixels_to_process);
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_to_process", &pixels_to_process)) return 1;
   
-  config_lookup_int(&config, "pixels_per_led_top", &pixels_per_led_top);
-  config_lookup_int(&config, "pixels_per_led_side", &pixels_per_led_side);
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_top", &pixels_per_led_top)) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_side", &pixels_per_led_side)) return 1;
 
-  config_lookup_int(&config, "vertical_pixel_gap", &vertical_pixel_gap);
-  config_lookup_int(&config, "vertical_pixel_count", &vertical_pixel_count);
+  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_gap", &vertical_pixel_gap)) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_count", &vertical_pixel_count)) return 1;
 
-  config_lookup_int(&config, "horizontal_pixel_gap", &horizontal_pixel_gap);
-  config_lookup_int(&config, "horizontal_pixel_count", &horizontal_pixel_count);
+  if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_gap", &horizontal_pixel_gap)) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_count", &horizontal_pixel_count)) return 1;
 
-  config_lookup_string(&config, "arduino_device_name", &portname);
+  if (CONFIG_FALSE == config_lookup_string(config, "arduino_device_name", &portname)) return 1;
 
   return 0;
 }
 
 int main() {
-  if (load_config()) return 1;
-
-  Display *d = XOpenDisplay((char *) NULL);
-
-  int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
-
-  if (fd < 0) {
-    printf("ERROR"); 
+  config_t config;
+  
+  if (load_config(&config)) {
+    fprintf(stderr, "Error in config file\n");
     return 1;
   }
 
-  set_interface_attribs(fd, B115200, 0);
+  config_destroy(&config);
 
-  int len = 3 * (2 * leds_on_side + leds_on_top);
+  // Display *d = XOpenDisplay((char *) NULL);
 
-  while (True) {
-    unsigned char *values = malloc(sizeof(char) * len);
-    im(d, values);
-    write(fd, values, len);
-    free(values);
-  }
+  // int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
+
+  // if (fd < 0) {
+  //   printf("ERROR"); 
+  //   return 1;
+  // }
+
+  // set_interface_attribs(fd, B115200, 0);
+
+  // int len = 3 * (2 * leds_on_side + leds_on_top);
+
+  // while (True) {
+  //   unsigned char *values = malloc(sizeof(char) * len);
+  //   im(d, values);
+  //   write(fd, values, len);
+  //   free(values);
+  // }
 }
