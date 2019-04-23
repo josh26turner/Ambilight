@@ -88,23 +88,23 @@ int main() {
 
   config_destroy(&config);
 
-  // Display *d = XOpenDisplay((char *) NULL);
+  Display *d = XOpenDisplay((char *) NULL);
 
-  // int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
+  int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
 
-  // if (fd < 0) {
-  //   printf("ERROR"); 
-  //   return 1;
-  // }
+  if (fd < 0) {
+    printf("ERROR"); 
+    return 1;
+  }
 
-  // set_interface_attribs(fd, B115200, 0);
+  set_interface_attribs(fd, B115200, 0);
 
-  // int len = 3 * (2 * leds_on_side + leds_on_top);
+  int len = 3 * (2 * leds_on_side + leds_on_top);
 
-  // while (True) {
-  //   unsigned char *values = malloc(sizeof(char) * len);
-  //   im(d, values);
-  //   write(fd, values, len);
-  //   free(values);
-  // }
+  while (True) {
+    unsigned char *values = malloc(sizeof(char) * len);
+    im(d, values);
+    write(fd, values, len);
+    free(values);
+  }
 }
