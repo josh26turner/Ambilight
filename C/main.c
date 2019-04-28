@@ -90,7 +90,7 @@ int main() {
 
   Display *d = XOpenDisplay((char *) NULL);
 
-  int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
+  int fd = open("/dev/ttyUSB0", O_WRONLY | O_NOCTTY | O_SYNC);
 
   if (fd < 0) {
     printf("ERROR"); 
