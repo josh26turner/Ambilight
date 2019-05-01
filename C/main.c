@@ -4,7 +4,6 @@
 
 #include "main.h"
 
-const char *portname;
 
 /*
  * Can't do project without a stackoverflow reference...
@@ -53,7 +52,7 @@ int set_interface_attribs (int fd, int speed, int parity)
 /*
  * Loading the config
  */
-int load_config(config_t* config) {
+int load_config(config_t* config, char *portname) {
   config_init(config);
   char *filename = strcat(getenv("HOME"), "/.config/Ambilight/config");
 
@@ -73,22 +72,24 @@ int load_config(config_t* config) {
   if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_gap", &horizontal_pixel_gap)) return 1;
   if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_count", &horizontal_pixel_count)) return 1;
 
-  if (CONFIG_FALSE == config_lookup_string(config, "arduino_device_name", &portname)) return 1;
+  const char *str;
+
+  if (CONFIG_FALSE == config_lookup_string(config, "arduino_device_name", &str)) return 1;
+  strcpy(portname, str);
 
   return 0;
 }
 
 int main() {
   config_t config;
+  char *portname = malloc(20);
   
-  if (load_config(&config)) {
+  if (load_config(&config, portname)) {
     fprintf(stderr, "Error in config file\n");
     return 1;
   }
 
   config_destroy(&config);
-
-  Display *d = XOpenDisplay((char *) NULL);
 
   int fd = open("/dev/ttyUSB0", O_WRONLY | O_NOCTTY | O_SYNC);
 
@@ -100,6 +101,8 @@ int main() {
   set_interface_attribs(fd, B115200, 0);
 
   int len = 3 * (2 * leds_on_side + leds_on_top);
+
+  Display *d = XOpenDisplay((char *) NULL);
 
   while (True) {
     unsigned char *values = malloc(sizeof(char) * len);

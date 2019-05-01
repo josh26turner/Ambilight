@@ -23,9 +23,9 @@ Dependencies:
     ```shell
     # cp udev-rules/52-arduino.rules /etc/udev/rules.d
     ```
-1. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in ~~the config file~~ `main.c` line 93 (the config isn't work and I can't work out why). Load up the Arduino IDE and install the `FastLED` library
-1. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
-1. Compile the C program: 
+2. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in the config file. Load up the Arduino IDE and install the `FastLED` library
+3. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
+4. Compile the C program: 
     ```shell
     $ gcc C/main.c C/screen.c -l X11 -o ambilight
     ``` 
