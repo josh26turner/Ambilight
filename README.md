@@ -2,7 +2,7 @@
 An ambient lighting solution for the X11 window enviroment in Linux using an Arduino to control the LEDs.
 
 ## Hardware
-* An Arduino Nano
+* An Arduino - I use a nano
 * WS2812b LEDs on a flexible sticky strip - I use 60: 15 for the 2 sides and 30 on top.
 * A powersupply for the LEDs - I use a 5V 4A one
 * A USB cable is required to run to the Arduino from your computer too
@@ -15,17 +15,17 @@ Dependencies:
 * A Linux distribution for the naming of the devices
 
 1. Run `Config-Generator.py` to create a config file. Also change the data pin and number of LEDs in `Arduino/ambilight/ambilight.ino` to the correct values.
-1. Add your user to `uucp` so they have access to `/dev/ttyUSB[0-9]+`: 
+2. Add your user to `uucp` so they have access to `/dev/ttyUSB[0-9]+`: 
     ```shell
     # usermod -a -G uucp "$USERNAME"
     ```
-1. Copy the udev rule into the config folder: 
+3. Copy the udev rule into the config folder: 
     ```shell
     # cp udev-rules/52-arduino.rules /etc/udev/rules.d
     ```
-2. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in the config file. Load up the Arduino IDE and install the `FastLED` library
-3. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
-4. Compile the C program: 
+4. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in the config file. Load up the Arduino IDE and install the `FastLED` library
+5. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
+6. Compile the C program: 
     ```shell
     $ gcc C/main.c C/screen.c -l X11 -o ambilight
     ``` 
