@@ -58,18 +58,14 @@ int load_config(config_t* config, char *portname) {
 
   if (CONFIG_FALSE == config_read_file(config, filename)) return 1;
 
-  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_top", &leds_on_top)) return 1;
-  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_side", &leds_on_side)) return 1;
-
-  if (CONFIG_FALSE == config_lookup_int(config, "pixels_to_process", &pixels_to_process)) return 1;
-  
-  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_top", &pixels_per_led_top)) return 1;
-  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_side", &pixels_per_led_side)) return 1;
-
-  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_gap", &vertical_pixel_gap)) return 1;
-  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_count", &vertical_pixel_count)) return 1;
-
-  if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_gap", &horizontal_pixel_gap)) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_top"           , &leds_on_top           )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "leds_on_side"          , &leds_on_side          )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_to_process"     , &pixels_to_process     )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_top"    , &pixels_per_led_top    )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "pixels_per_led_side"   , &pixels_per_led_side   )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_gap"    , &vertical_pixel_gap    )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "vertical_pixel_count"  , &vertical_pixel_count  )) return 1;
+  if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_gap"  , &horizontal_pixel_gap  )) return 1;
   if (CONFIG_FALSE == config_lookup_int(config, "horizontal_pixel_count", &horizontal_pixel_count)) return 1;
 
   const char *str;

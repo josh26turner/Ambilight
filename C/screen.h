@@ -1,13 +1,12 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 #include <stdio.h>
-#include <time.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 
 int leds_on_top;
 int leds_on_side;
