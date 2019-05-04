@@ -89,6 +89,8 @@ int main() {
 
   int fd = open("/dev/ttyUSB0", O_WRONLY | O_NOCTTY | O_SYNC);
 
+  free(portname);
+
   if (fd < 0) {
     printf("ERROR"); 
     return 1;
