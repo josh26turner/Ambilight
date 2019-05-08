@@ -1,6 +1,3 @@
-//
-// Created by josh on 2/15/19.
-//
 #include "screen.h"
 
 int randint(int min, int max) {
