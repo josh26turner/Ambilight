@@ -8,8 +8,7 @@
 int set_interface_attribs (int fd, int speed, int parity) {
   struct termios tty;
   memset (&tty, 0, sizeof tty);
-  if (tcgetattr (fd, &tty) != 0)
-  {
+  if (tcgetattr (fd, &tty) != 0) {
     //error_message ("error %d from tcgetattr", errno);
     return -1;
   }
@@ -36,8 +35,7 @@ int set_interface_attribs (int fd, int speed, int parity) {
   tty.c_cflag &= ~CSTOPB;
   tty.c_cflag &= ~CRTSCTS;
 
-  if (tcsetattr (fd, TCSANOW, &tty) != 0)
-  {
+  if (tcsetattr (fd, TCSANOW, &tty) != 0) {
     //error_message ("error %d from tcsetattr", errno);
     return -1;
   }
@@ -82,7 +80,7 @@ int main() {
     return 1;
   }
 
-  int fd = open("/dev/ttyUSB0", O_WRONLY | O_NOCTTY | O_SYNC);
+  int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
 
   free(portname);
 
@@ -96,11 +94,10 @@ int main() {
   int len = 3 * (2 * leds_on_side + leds_on_top);
 
   Display *d = XOpenDisplay((char *) NULL);
+  unsigned char *values = malloc(sizeof(char) * len);
 
   while (True) {
-    unsigned char *values = malloc(sizeof(char) * len);
     im(d, values);
     write(fd, values, len);
-    free(values);
   }
 }
