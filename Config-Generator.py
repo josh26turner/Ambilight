@@ -20,7 +20,7 @@ ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess
 output = ps.communicate()[0]
 
 dim = output.decode("utf-8").replace('\n', '')
-print(f"Is this your resolution: {dim}?")
+print("Is this your resolution: {0}?".format(dim))
 yes = input("[Y/n]").lower()
 
 def res_fill(dim):
@@ -55,23 +55,23 @@ if not os.path.exists(os.environ['HOME'] + "/.config/Ambilight/"):
 
 config = open(os.environ['HOME'] + "/.config/Ambilight/config", "w+")
 
-config.write(f"leds_on_top = {leds_on_top};\n")
-config.write(f"leds_on_side = {leds_on_side};\n")
+config.write("leds_on_top = {0};\n".format(leds_on_top))
+config.write("leds_on_side = {0};\n".format(leds_on_side))
 config.write("\n")
 
-config.write(f"pixels_to_process = {pixels_to_process};\n")
+config.write("pixels_to_process = {0};\n".format(pixels_to_process))
 config.write("\n")
 
-config.write(f"pixels_per_led_top = {pixels_per_led_top};\n")
-config.write(f"pixels_per_led_side = {pixels_per_led_side};\n")
+config.write("pixels_per_led_top = {0};\n".format(pixels_per_led_top))
+config.write("pixels_per_led_side = {0};\n".format(pixels_per_led_side))
 config.write("\n")
 
-config.write(f"vertical_pixel_gap = {vertical_pixel_gap};\n")
-config.write(f"vertical_pixel_count = {vertical_pixel_count};\n")
+config.write("vertical_pixel_gap = {0};\n".format(vertical_pixel_gap))
+config.write("vertical_pixel_count = {0};\n".format(vertical_pixel_count))
 config.write("\n")
 
-config.write(f"horizontal_pixel_gap = {horizontal_pixel_gap};\n")
-config.write(f"horizontal_pixel_count = {horizontal_pixel_count};\n")
+config.write("horizontal_pixel_gap = {0};\n".format(horizontal_pixel_gap))
+config.write("horizontal_pixel_count = {0};\n".format(horizontal_pixel_count))
 config.write("\n")
 
 config.write("arduino_device_name = \"/dev/ttyUSB0\";\n")

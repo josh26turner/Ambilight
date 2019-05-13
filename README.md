@@ -27,7 +27,7 @@ Dependencies:
 5. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
 6. Compile the C program: 
     ```shell
-    gcc C/main.c C/screen.c -l X11 -o ambilight
+    gcc C/main.c C/screen.c -l X11 -l config -o ambilight
     ``` 
     and run it using 
     ```shell
