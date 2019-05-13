@@ -11,7 +11,9 @@ An ambient lighting solution for the X11 window enviroment in Linux using an Ard
 Dependencies:
 * Arduino IDE - with the `FastLED` library
 * `gcc` 
+  * `libconfig-dev` package will need to be installed if it doesn't come with packaged in `gcc` (such as Debian based distros - like Raspbian)
 * An X11 window enviroment
+  * `libx11-dev` package will need to be installed if it doesn't come with packaged in X11 (such as Debian based distros - like Raspbian)
 * A Linux distribution for the naming of the devices
 
 1. Run `Config-Generator.py` to create a config file. Also change the data pin and number of LEDs in `Arduino/ambilight/ambilight.ino` to the correct values.
