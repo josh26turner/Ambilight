@@ -1,5 +1,6 @@
 #include "main.h"
 
+char *portname;
 
 /*
  * Can't do project without a stackoverflow reference...
@@ -45,7 +46,7 @@ int set_interface_attribs (int fd, int speed, int parity) {
 /*
  * Loading the config from ~/.config/Ambilight/config
  */
-int load_config(char *portname) {
+int load_config() {
   config_t config;
   config_init(&config);
 
@@ -66,17 +67,20 @@ int load_config(char *portname) {
   const char *str;
 
   if (CONFIG_FALSE == config_lookup_string(&config, "arduino_device_name", &str)) return 1;
-  strcpy(portname, str);
+
+  portname = malloc(strlen(str) + 1);
+
+  strncpy(portname, str, strlen(str) + 1);
+  portname[strlen(str)] = 0; //Making sure it is null terminated
 
   config_destroy(&config);
   return 0;
 }
 
-int main() {
-  char *portname = malloc(20);
-  
-  if (load_config(portname)) {
+int main() {  
+  if (load_config()) {
     fprintf(stderr, "Error in config file\n");
+    free(portname);
     return 1;
   }
 
@@ -94,7 +98,7 @@ int main() {
   int len = 3 * (2 * leds_on_side + leds_on_top);
 
   Display *d = XOpenDisplay((char *) NULL);
-  unsigned char *values = malloc(sizeof(char) * len);
+  unsigned char *values = malloc(sizeof(unsigned char) * len);
 
   while (True) {
     im(d, values);
