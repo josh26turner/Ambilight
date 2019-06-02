@@ -23,7 +23,7 @@ Dependencies:
     ```
 1. Copy the udev rule into the config folder: 
     ```shell
-    sudo cp udev-rules/52-arduino.rules /etc/udev/rules.d
+    sudo cp udev-rule/52-arduino.rules /etc/udev/rules.d
     ```
 1. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in the config file. Load up the Arduino IDE and install the `FastLED` library
 1. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
