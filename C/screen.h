@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
 int leds_on_top;
