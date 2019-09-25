@@ -38,11 +38,11 @@ Dependencies:
 
 # Demo
 
+Videos can be found in the demo folder.
+
 ![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.jpg)
 
-![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.mp4)
-
-![Rockstar Games, Inc](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.mp4 "GTA V splash screen")
+![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.jpg)
 
 # Bad delay  
 
