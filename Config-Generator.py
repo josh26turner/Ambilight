@@ -55,6 +55,8 @@ if not os.path.exists(os.environ['HOME'] + "/.config/Ambilight/"):
 
 config = open(os.environ['HOME'] + "/.config/Ambilight/config", "w+")
 
+config.write("brightness = 100;\n")
+
 config.write("leds_on_top = {0};\n".format(leds_on_top))
 config.write("leds_on_side = {0};\n".format(leds_on_side))
 config.write("\n")

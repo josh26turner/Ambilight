@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <X11/Xutil.h>
 
+int brightness;
+
 int leds_on_top;
 int leds_on_side;
 

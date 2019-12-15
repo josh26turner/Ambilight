@@ -1,5 +1,7 @@
 #Main configuration file 
 
+brightness = 60; # Out of 100
+
 leds_on_top = 30;
 leds_on_side = 15;
 

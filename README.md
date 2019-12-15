@@ -44,6 +44,14 @@ Videos can be found in the demo folder.
 
 ![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.jpg)
 
-# Bad delay  
+# Config
 
-If you're getting bad delay then go to the config file (`~/.config/Ambilight/config`) and decrease the `pixels_to_process` value. Find the highest value where you can't notice the delay, this should give good results.  
+There is a config file saved at `~/.config/Ambilight/config`.
+
+## Bad Delay
+
+If you're getting bad delay then go to the config file and decrease the `pixels_to_process` value. Find the highest value where you can't notice the delay, this should give good results.  
+
+## Brightness
+
+There's also a brightness setting - don't adjust over 100

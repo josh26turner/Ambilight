@@ -54,6 +54,7 @@ int load_config() {
 
 	if (CONFIG_FALSE == config_read_file(&config, filename)) return 1;
 
+	if (CONFIG_FALSE == config_lookup_int(&config, "brightness"            , &brightness            )) return 1;
 	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_top"           , &leds_on_top           )) return 1;
 	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_side"          , &leds_on_side          )) return 1;
 	if (CONFIG_FALSE == config_lookup_int(&config, "pixels_to_process"     , &pixels_to_process     )) return 1;
@@ -71,7 +72,6 @@ int load_config() {
 	portname = malloc(strlen(str) + 1);
 
 	strncpy(portname, str, strlen(str) + 1);
-	portname[strlen(str)] = 0; //Making sure it is null terminated
 
 	config_destroy(&config);
 	return 0;
@@ -84,12 +84,18 @@ int main() {
 		return 1;
 	}
 
+	if (brightness > 100) {
+		fprintf(stderr, "Can't have brightness greater than 100\n");
+		free(portname);
+		return 1;
+	}
+
 	int fd = open(portname, O_WRONLY | O_NOCTTY | O_SYNC);
 
 	free(portname);
 
 	if (fd < 0) {
-		printf("ERROR"); 
+		fprintf(stderr, "Error opening connection to Arduino\n"); 
 		return 1;
 	}
 
@@ -98,7 +104,7 @@ int main() {
 	int len = 3 * (2 * leds_on_side + leds_on_top);
 
 	Display *d = XOpenDisplay((char *) NULL);
-	unsigned char *values = malloc(sizeof(unsigned char) * len);
+	unsigned char *values __attribute__((aligned(64))) = malloc(sizeof(unsigned char) * len);
 
 	while (True) {
 		im(d, values);

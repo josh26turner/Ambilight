@@ -21,9 +21,9 @@ void fillRGB(int i, int min_x, int max_x, int min_y, int max_y, int base, unsign
 		totalB += c.blue/256;
 	}
 
-	values[base + (i * 3) + 0] = totalR / pixels_to_process;
-	values[base + (i * 3) + 1] = totalG / pixels_to_process;
-	values[base + (i * 3) + 2] = totalB / pixels_to_process;
+	values[base + (i * 3) + 0] = totalR / pixels_to_process * brightness / 100;
+	values[base + (i * 3) + 1] = totalG / pixels_to_process * brightness / 100;
+	values[base + (i * 3) + 2] = totalB / pixels_to_process * brightness / 100;
 }
 
 void im(Display *d, unsigned char values[]){
