@@ -1,5 +1,5 @@
 # Ambillight
-An ambient lighting solution for the X11 window enviroment in Linux using an Arduino to control the LEDs.
+An ambient lighting solution for the X11 window environment in Linux using an Arduino to control the LEDs.
 
 ## Hardware
 * An Arduino - I use a nano
@@ -9,32 +9,15 @@ An ambient lighting solution for the X11 window enviroment in Linux using an Ard
 
 ## Software
 Dependencies:
-* Arduino IDE - with the `FastLED` library
-* `gcc` 
-  * `libconfig-dev` package will need to be installed if it doesn't come with packaged in `gcc` (such as Debian based distros - like Raspbian)
-* An X11 window enviroment
-  * `libx11-dev` package will need to be installed if it doesn't come with packaged in X11 (such as Debian based distros - like Raspbian)
 * A Linux distribution for the naming of the devices
+* Arduino IDE - with the `FastLED` library
+* [Libconfig](https://github.com/hyperrealm/libconfig) (`libconfig-dev` on Debian based distros - like Raspbian - or `libconfig` on other distros)
+* An X11 window enviroment and libraries (the `libx11-dev` package will need to be installed on Debian based distros - like Raspbian - or `libx11` on other distros)
 
-1. Run `Config-Generator.py` to create a config file. Also change the data pin and number of LEDs in `Arduino/ambilight/ambilight.ino` to the correct values.
-1. Add your user to `uucp` so they have access to `/dev/ttyUSB[0-9]+`: 
-    ```shell
-    sudo usermod -a -G uucp "$USERNAME"
-    ```
-1. Copy the udev rule into the config folder: 
-    ```shell
-    sudo cp udev-rule/52-arduino.rules /etc/udev/rules.d
-    ```
-1. With the Arduino now being named `/dev/ttyUSB0` (after a reboot) the rest of the code should work if it is the only Arduino you are using. If you use multiple, or have a different naming system, you will need to adjust the device name in the config file. Load up the Arduino IDE and install the `FastLED` library
-1. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
-1. Compile the C program: 
-    ```shell
-    gcc C/main.c C/screen.c -l X11 -l config -o ambilight
-    ``` 
-    and run it using 
-    ```shell
-    ./ambilight
-    ```
+1. Run `install.sh`
+2. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
+3. Start and stop using `run.sh` 
+
 
 # Demo
 
@@ -54,4 +37,4 @@ If you're getting bad delay then go to the config file and decrease the `pixels_
 
 ## Brightness
 
-There's also a brightness setting - don't adjust over 100
+Brightness as an integer out of 100

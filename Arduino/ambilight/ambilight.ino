@@ -18,27 +18,33 @@ void setup() {
 
 void loop() { 
 	memset(leds, 0, NUM_LEDS * sizeof(struct CRGB));
+  int c = 0;
+  
+  while (Serial.available() <= 0) ;
+  
+  if ((c = Serial.read()) != 'F') return;
+
+  while (Serial.available() <= 0);
+  
+  if ((c = Serial.read()) != 'u') return;
+  
 	// Read the transmission data and set LED values
 	for (uint8_t i = 0; i < NUM_LEDS; i++) {
 		byte r, g, b;
 
-		while(!Serial.available());
+    while (Serial.available() <= 0);
 		r = Serial.read();
-
-		while(!Serial.available());
+    
+    while (Serial.available() <= 0);
 		g = Serial.read();
-
-		while(!Serial.available());
+    
+    while (Serial.available() <= 0);
 		b = Serial.read();
 
-		leds[minusOne(i)].r = r;
-		leds[minusOne(i)].g = g;
-		leds[minusOne(i)].b = b;
+		leds[i].r = r;
+		leds[i].g = g;
+		leds[i].b = b;
 	}
+ 
 	FastLED.show();
-}
-
-int minusOne(int i) {
-	if (i > 0) return i - 1;
-	else return NUM_LEDS - 1;
 }

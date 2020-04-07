@@ -1,4 +1,14 @@
-#include "main.h"
+#include <errno.h>
+#include <fcntl.h>
+#include <libconfig.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <termios.h>
+#include <unistd.h>
+
+int leds_on_top;
+int leds_on_side;
 
 char *portname;
 
@@ -54,16 +64,8 @@ int load_config() {
 
 	if (CONFIG_FALSE == config_read_file(&config, filename)) return 1;
 
-	if (CONFIG_FALSE == config_lookup_int(&config, "brightness"            , &brightness            )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_top"           , &leds_on_top           )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_side"          , &leds_on_side          )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "pixels_to_process"     , &pixels_to_process     )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "pixels_per_led_top"    , &pixels_per_led_top    )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "pixels_per_led_side"   , &pixels_per_led_side   )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "vertical_pixel_gap"    , &vertical_pixel_gap    )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "vertical_pixel_count"  , &vertical_pixel_count  )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "horizontal_pixel_gap"  , &horizontal_pixel_gap  )) return 1;
-	if (CONFIG_FALSE == config_lookup_int(&config, "horizontal_pixel_count", &horizontal_pixel_count)) return 1;
+	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_top" , &leds_on_top)) return 1;
+	if (CONFIG_FALSE == config_lookup_int(&config, "leds_on_side", &leds_on_side)) return 1;
 
 	const char *str;
 
@@ -77,15 +79,9 @@ int load_config() {
 	return 0;
 }
 
-int main() {  
+int main() {
 	if (load_config()) {
 		fprintf(stderr, "Error in config file\n");
-		free(portname);
-		return 1;
-	}
-
-	if (brightness > 100) {
-		fprintf(stderr, "Can't have brightness greater than 100\n");
 		free(portname);
 		return 1;
 	}
@@ -103,15 +99,11 @@ int main() {
 
 	int len = 3 * (2 * leds_on_side + leds_on_top);
 
-	Display *d = XOpenDisplay((char *) NULL);
 	unsigned char *values __attribute__((aligned(64))) = malloc(sizeof(unsigned char) * (len + 2));
 	values[0] = 'F';
 	values[1] = 'u';
 
-	char i = 0;
+    memset(values + 2, 0, len);
 
-	while (True) {
-		im(d, values + 2);
-		write(fd, values, len + 2);
-	}
+    write(fd, values, len + 2);
 }
