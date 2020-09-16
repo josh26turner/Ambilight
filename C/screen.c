@@ -1,5 +1,21 @@
 #include "screen.h"
 
+int brightness;
+
+int leds_on_top;
+int leds_on_side;
+
+int pixels_to_process;
+
+int pixels_per_led_top;
+int pixels_per_led_side;
+
+int vertical_pixel_gap;
+int vertical_pixel_count;
+
+int horizontal_pixel_gap;
+int horizontal_pixel_count;
+
 int randint(int min, int max) {
   return min + (rand() % (max - min));
 }
