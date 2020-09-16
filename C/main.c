@@ -71,7 +71,7 @@ int load_config() {
 
 	portname = malloc(strlen(str) + 1);
 
-	strncpy(portname, str, strlen(str) + 1);
+	strcpy(portname, str);
 
 	config_destroy(&config);
 	return 0;
@@ -107,8 +107,6 @@ int main() {
 	unsigned char *values __attribute__((aligned(64))) = malloc(sizeof(unsigned char) * (len + 2));
 	values[0] = 'F';
 	values[1] = 'u';
-
-	char i = 0;
 
 	while (True) {
 		im(d, values + 2);
