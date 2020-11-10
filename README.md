@@ -1,4 +1,7 @@
 # Ambillight
+
+![](Demo/Ambilight.gif)
+
 An ambient lighting solution for the X11 window environment in Linux using an Arduino to control the LEDs.
 
 Multi monitor not currently supported.
@@ -45,12 +48,6 @@ $ ambilight-color
 ```
 will set the background color to the one specified in the config file.
 
-
-# Demo
-
-Videos can be found in the demo folder.
-
-![](Demo/Ambilight.gif)
 
 ![](Demo/Ambilight.jpg)
 
