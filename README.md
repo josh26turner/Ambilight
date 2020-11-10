@@ -1,6 +1,6 @@
 # Ambillight
 
-![](Demo/Ambilight.gif)
+![https://www.youtube.com/watch?v=gHw7eMHb4cw](Demo/Ambilight.gif)
 
 An ambient lighting solution for the X11 window environment in Linux using an Arduino to control the LEDs.
 
