@@ -1,4 +1,15 @@
-#include "main.h"
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <errno.h>
+#include <fcntl.h>
+#include <libconfig.h>
+#include <string.h>
+#include <termios.h>
+
+#include "screen.h"
+
+#endif
 
 char *portname;
 
@@ -102,6 +113,7 @@ int main() {
 	set_interface_attribs(fd, B115200, 0);
 
 	int len = 3 * (2 * leds_on_side + leds_on_top);
+	unsigned t = (unsigned) time(NULL);
 
 	Display *d = XOpenDisplay((char *) NULL);
 	unsigned char *values __attribute__((aligned(64))) = malloc(sizeof(unsigned char) * (len + 2));
@@ -109,7 +121,7 @@ int main() {
 	values[1] = 'u';
 
 	while (True) {
-		im(d, values + 2);
+		im(d, values + 2, t);
 		write(fd, values, len + 2);
 	}
 }

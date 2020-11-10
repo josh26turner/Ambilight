@@ -42,8 +42,8 @@ void fillRGB(int i, int min_x, int max_x, int min_y, int max_y, int base, unsign
 	values[base + (i * 3) + 2] = totalB / pixels_to_process * brightness / 100;
 }
 
-void im(Display *d, unsigned char values[]){
-	srand((unsigned) time(NULL)); // Initialising random
+void im(Display *d, unsigned char values[], unsigned t){
+	srand(t); // Initialising random
 	
 	XColor c;
 

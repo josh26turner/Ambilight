@@ -16,12 +16,14 @@ horizontal_pixel_gap = 0
 horizontal_pixel_count = 0
 
 cmd = "xdpyinfo | awk '/dimensions/{print $2}'"
-ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 output = ps.communicate()[0]
 
 dim = output.decode("utf-8").replace('\n', '')
-print("Is this your resolution: {0}?".format(dim))
-yes = input("[Y/n]").lower()
+yes = None
+if len(dim) != 0:
+    print("Is this your resolution: {0}?".format(dim))
+    yes = input("[Y/n]").lower()
 
 def res_fill(dim):
     res = dim.split("x")
@@ -36,7 +38,7 @@ def res_fill(dim):
         print("Sorry something went wrong")
         exit()
 
-if yes == "n" or yes == "no":
+if yes == "n" or yes == "no" or len(dim) == 0:
     dim = input("Input your resolution (HORIZONTxVERTICAL):")
 
 res_fill(dim)
@@ -74,6 +76,9 @@ config.write("\n")
 
 config.write("horizontal_pixel_gap = {0};\n".format(horizontal_pixel_gap))
 config.write("horizontal_pixel_count = {0};\n".format(horizontal_pixel_count))
+config.write("\n")
+
+config.write("background = [0, 0, 0];\n")
 config.write("\n")
 
 config.write("arduino_device_name = \"/dev/ttyUSB0\";\n")

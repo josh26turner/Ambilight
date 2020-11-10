@@ -22,10 +22,6 @@ if [[ $(ls /usr/include/X11 2> /dev/null | wc -l) = "0" ]]; then
 fi
 
 echo "Compiling the code"
-gcc C/main.c C/screen.c -l X11 -l config -o ambilight
-gcc -l config C/ambilight_off.c -o ambilight_off
-
-sudo cp ambilight /usr/bin/
-sudo cp ambilight_off /usr/bin/
+./update.sh
 
 echo "A reboot is required to rename the Arduino in the required way"

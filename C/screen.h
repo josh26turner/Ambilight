@@ -23,6 +23,6 @@ extern int vertical_pixel_count;
 extern int horizontal_pixel_gap;
 extern int horizontal_pixel_count;
 
-void im(Display* d, unsigned char values[]);
+void im(Display* d, unsigned char values[], unsigned t);
 
 #endif

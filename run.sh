@@ -1,9 +1,11 @@
 #!/bin/bash
-
-if [[ "$(ps -A -f | grep ambilight | wc -l)" = "1" ]]; then
+ps -A | grep ambilight
+if [[ "$(ps -A | grep ambilight | wc -l)" = "0" ]]; then
+	echo "Start"
 	ambilight &
 else
+	echo "Kill"
 	killall ambilight
-    sleep 1
-	ambilight_off
+	sleep 1
+	ambilight-color
 fi

@@ -1,6 +1,8 @@
 # Ambillight
 An ambient lighting solution for the X11 window environment in Linux using an Arduino to control the LEDs.
 
+Multi monitor not currently supported.
+
 ## Hardware
 * An Arduino - I use a nano
 * WS2812b LEDs on a flexible sticky strip - I use 60: 15 for the 2 sides and 30 on top.
@@ -16,20 +18,49 @@ Dependencies:
 
 1. Run `install.sh`
 2. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino
-3. Start and stop using `run.sh` 
+
+# Usage
+
+To run the ambient lighting, run:
+```bash
+$ ambilight
+```
+Quit with `ctrl+c`.
+
+To set a background color, use:
+```bash
+$ ambilight <red> <green> <blue>
+```
+For example:
+```bash
+$ ambilight 0 0 0
+```
+will turn off all the lights.
+
+Red, green and blue values from 0 to 254.
+
+Running
+```bash
+$ ambilight-color
+```
+will set the background color to the one specified in the config file.
 
 
 # Demo
 
 Videos can be found in the demo folder.
 
-![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-1.jpg)
+![](Demo/Ambilight.gif)
 
-![](https://github.com/josh26turner/ambilight/raw/master/Demo/Ambilight-2.jpg)
+![](Demo/Ambilight.jpg)
 
 # Config
 
 There is a config file saved at `~/.config/Ambilight/config`.
+
+## Background
+
+An idle color can be set in the config, this color will be set when `ambilight-color` is run with no arguments.
 
 ## Bad Delay
 

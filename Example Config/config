@@ -16,4 +16,6 @@ vertical_pixel_count = 1440;
 horizontal_pixel_gap = 5;
 horizontal_pixel_count = 2560;
 
+background = [255, 255, 255];
+
 arduino_device_name = "/dev/ttyUSB0";
