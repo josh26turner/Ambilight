@@ -28,7 +28,7 @@ int set_interface_attribs (int fd, int speed) {
 	cfsetospeed (&tty, speed);
 	cfsetispeed (&tty, speed);
 
-	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
+	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8; // 8-bit chars
 	
 	tty.c_iflag &= ~IGNBRK; // disable break processing
 	tty.c_lflag = 0; // no signaling chars, no echo, no canonical processing
@@ -132,7 +132,7 @@ int main() {
 	values[1] = 'u';
 
 	while (True) {
-        get_colors(d, values + 2, t, &cnf);
+		get_colors(d, values + 2, t, &cnf);
 		write(fd, values, len + 2);
 	}
 }

@@ -6,8 +6,11 @@
 #include <termios.h>
 #include <unistd.h>
 
-/*
- * https://stackoverflow.com/a/6947758
+/**
+ * Setting interface attributes - https://stackoverflow.com/a/6947758
+ * @param fd - file descriptor
+ * @param speed - speed of interface
+ * @return - success: 0 or failure: -1
  */
 int set_interface_attribs (int fd, int speed) {
 	struct termios tty;
@@ -20,7 +23,7 @@ int set_interface_attribs (int fd, int speed) {
 	cfsetospeed (&tty, speed);
 	cfsetispeed (&tty, speed);
 
-	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
+	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8; // 8-bit chars
 	
 	tty.c_iflag &= ~IGNBRK; // disable break processing
 	tty.c_lflag = 0; // no signaling chars, no echo, no canonical processing

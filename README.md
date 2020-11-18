@@ -21,7 +21,7 @@ Dependencies:
 * An X11 window enviroment and libraries (the `libx11-dev` package will need to be installed on Debian based distros - like Raspbian - or `libx11` on other distros)
 
 1. Run `install.sh`
-2. Upload the `Arduino/ambilight/ambilight.ino` program onto the Arduino - updating the `NUM_LEDS` and `DATA_PIN` to the your values
+2. Upload the `Arduino/ambilight.ino` program onto the Arduino - updating the `NUM_LEDS` and `DATA_PIN` to the your values
 
 # Usage
 
