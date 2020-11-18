@@ -26,6 +26,13 @@ struct config
     int horizontal_pixel_count;
 };
 
+/**
+ * Get the RGB colors for the display
+ * @param d - the X display to get the colors from
+ * @param values - the array to write the colors to
+ * @param t - a random seed
+ * @param cnf - config
+ */
 void get_colors(Display* d, unsigned char *values, unsigned t, struct config *cnf);
 
 #endif

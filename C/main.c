@@ -88,7 +88,7 @@ int load_config(struct config *cnf, char **portname) {
 
 	*portname = malloc(strlen(str) + 1);
 
-	strcpy(portname, str);
+	strcpy(*portname, str);
 
 	config_destroy(&config);
 	return 0;
