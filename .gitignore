@@ -1,10 +1,2 @@
-Python/screenshots/img.png
-Python/.idea/
-
-.idea
-*.out
-
-C/ambilight
-C/ambilight_off
-
 .vscode
+build/

@@ -7,22 +7,25 @@
 #include <unistd.h>
 #include <X11/Xutil.h>
 
-extern int brightness;
+struct config
+{
+    int brightness;
 
-extern int leds_on_top;
-extern int leds_on_side;
+    int leds_on_top;
+    int leds_on_side;
 
-extern int pixels_to_process;
+    int pixels_to_process;
 
-extern int pixels_per_led_top;
-extern int pixels_per_led_side;
+    int pixels_per_led_top;
+    int pixels_per_led_side;
 
-extern int vertical_pixel_gap;
-extern int vertical_pixel_count;
+    int vertical_pixel_gap;
+    int vertical_pixel_count;
 
-extern int horizontal_pixel_gap;
-extern int horizontal_pixel_count;
+    int horizontal_pixel_gap;
+    int horizontal_pixel_count;
+};
 
-void im(Display* d, unsigned char values[], unsigned t);
+void get_colors(Display* d, unsigned char *values, unsigned t, struct config *cnf);
 
 #endif

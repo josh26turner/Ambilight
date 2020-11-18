@@ -1,5 +1,5 @@
-gcc C/main.c C/screen.c -l X11 -l config -o ambilight
-gcc -l config C/background.c -o ambilight-color
+cmake -DCMAKE_BUILD_TYPE:STRING=Release -H./C -B./build 
+cmake --build build --config Release --target all
 
-sudo cp ambilight /usr/bin/
-sudo cp ambilight-color /usr/bin/
+sudo cp build/ambilight /usr/bin/
+sudo cp build/ambilight-color /usr/bin/

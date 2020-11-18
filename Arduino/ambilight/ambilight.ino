@@ -1,6 +1,6 @@
 #include <FastLED.h>
 #define NUM_LEDS 60
-#define DATA_PIN 2 // or D2
+#define DATA_PIN 2
 
 CRGB leds[NUM_LEDS];
 CRGB back;
