@@ -9,16 +9,16 @@ int randint(int min, int max) {
 
 /**
  * Find the average color of a block
- * @param i - to write colour to in values
- * @param min_x - minimum x value for a pixel
- * @param max_x - maximum x value for a pixel
- * @param min_y - minimum y value for a pixel
- * @param max_y - maximum y value for a pixel
- * @param values - array of bytes to write color to
- * @param d - The X display to query
- * @param image - The snapshot of the display to query
- * @param pixels_to_process - The number of pixels to use for an average
- * @param brightness - A percentage to scale the color by
+ * @param i index to write colour to in values
+ * @param min_x minimum x value for a pixel
+ * @param max_x maximum x value for a pixel
+ * @param min_y minimum y value for a pixel
+ * @param max_y maximum y value for a pixel
+ * @param values array of bytes to write color to
+ * @param d The X display to query
+ * @param image The snapshot of the display to query
+ * @param pixels_to_process The number of pixels to use for an average
+ * @param brightness A percentage to scale the color by
  */
 void fillRGB(int i, int min_x, int max_x, int min_y, int max_y, unsigned char values[], 
 			 Display* d, XImage* image, int pixels_to_process, int brightness) {
@@ -44,13 +44,13 @@ void fillRGB(int i, int min_x, int max_x, int min_y, int max_y, unsigned char va
 
 /**
  * Get the RGB colors for the display
- * @param d - the X display to get the colors from
- * @param values - the array to write the colors to
- * @param t - a random seed
- * @param cnf - config
+ * @param d the X display to get the colors from
+ * @param values the array to write the colors to
+ * @param t a random seed
+ * @param cnf config
  */
-void get_colors(Display *d, unsigned char *values, unsigned t, struct config *cnf){
-    XImage *image;
+void get_colors(Display *d, unsigned char *values, unsigned t, struct config *cnf) {
+	XImage *image;
 
 	srand(t); // Initialising random
 

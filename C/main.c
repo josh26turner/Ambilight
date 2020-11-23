@@ -13,9 +13,9 @@ struct config_value
 
 /**
  * Setting interface attributes - https://stackoverflow.com/a/6947758
- * @param fd - file descriptor
- * @param speed - speed of interface
- * @return - success: 0 or failure: -1
+ * @param fd file descriptor
+ * @param speed speed of interface
+ * @return success: 0 or failure: -1
  */
 int set_interface_attribs (int fd, int speed) {
 	struct termios tty;
@@ -50,8 +50,9 @@ int set_interface_attribs (int fd, int speed) {
 
 /**
  * Loading the config from ~/.config/Ambilight/config
- * @param cnf - config to read in to
- * @return - success: 0 or failure: -1
+ * @param cnf config to read in to
+ * @param portname double pointer to fill the portname
+ * @return success: 0 or failure: -1
  */
 int load_config(struct config *cnf, char **portname) {
 	char *filename;

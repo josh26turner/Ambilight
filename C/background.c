@@ -8,9 +8,9 @@
 
 /**
  * Setting interface attributes - https://stackoverflow.com/a/6947758
- * @param fd - file descriptor
- * @param speed - speed of interface
- * @return - success: 0 or failure: -1
+ * @param fd file descriptor
+ * @param speed speed of interface
+ * @return success: 0 or failure: -1
  */
 int set_interface_attribs (int fd, int speed) {
 	struct termios tty;
@@ -47,15 +47,18 @@ int set_interface_attribs (int fd, int speed) {
 	return 0;
 }
 
-/*
+/**
+ *
  * Loading the config from ~/.config/Ambilight/config
+ * @param rgb the array to read  the rgb values from the config in to
+ * @param portname double pointer to fill the portname
+ * @return success: 0 or failure: -1
  */
 int load_config(unsigned char *rgb, char **portname) {
 	char *filename;
 	const char *str;
 	config_t config;
 	config_setting_t *setting;
-	int count;
 
 	config_init(&config);
 
@@ -67,9 +70,7 @@ int load_config(unsigned char *rgb, char **portname) {
 
 	setting = config_lookup(&config, "background");
 	if (setting != NULL) {
-		count = config_setting_length(setting);
-
-		if (count != 3) {
+		if (config_setting_length(setting) != 3) {
 			return 1;
 		}
 		
@@ -84,6 +85,11 @@ int load_config(unsigned char *rgb, char **portname) {
 	return 0;
 }
 
+/**
+ * Send the background color to the Arduino
+ * @param fd file descriptor
+ * @param rgb the color to send
+ */
 void send_values(int fd, unsigned char *rgb) {
 	unsigned char *values = malloc(sizeof(unsigned char) * 5);
 
@@ -110,7 +116,6 @@ int main(int argc, char *argv[]) {
 
 	if (load_config(rgb, &portname)) {
 		fprintf(stderr, "Error in config file\n");
-		free(portname);
 		return 1;
 	}
 

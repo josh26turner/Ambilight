@@ -28,10 +28,10 @@ struct config
 
 /**
  * Get the RGB colors for the display
- * @param d - the X display to get the colors from
- * @param values - the array to write the colors to
- * @param t - a random seed
- * @param cnf - config
+ * @param d the X display to get the colors from
+ * @param values the array to write the colors to
+ * @param t a random seed
+ * @param cnf config
  */
 void get_colors(Display* d, unsigned char *values, unsigned t, struct config *cnf);
 
