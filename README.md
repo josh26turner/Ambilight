@@ -33,11 +33,11 @@ Quit with `ctrl+c`.
 
 To set a background color, use:
 ```bash
-$ ambilight <red> <green> <blue>
+$ ambilight-color <red> <green> <blue>
 ```
 For example:
 ```bash
-$ ambilight 0 0 0
+$ ambilight-color 0 0 0
 ```
 will turn off all the lights.
 
