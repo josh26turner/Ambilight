@@ -124,7 +124,7 @@ int main() {
 
 	set_interface_attribs(fd, B115200);
 
-	len = 3 * (2 * cnf.leds_on_side + cnf.leds_on_top);
+	len = 3 * (2 * cnf.leds_on_side + 2 * cnf.leds_on_top);
 	t = (unsigned) time(NULL);
 
 	d = XOpenDisplay((char *) NULL);

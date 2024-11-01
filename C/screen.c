@@ -82,5 +82,13 @@ void get_colors(Display *d, unsigned char *values, unsigned t, struct config *cn
 				values, d, image, cnf->pixels_to_process, cnf->brightness);
 	}
 
+	//Filling the bottom side
+	for (int i = 0; i < cnf->leds_on_top; i++) {
+		fillRGB((cnf->leds_on_side * 2 + cnf->leds_on_top * 2 - i - 1) * 3,
+				cnf->horizontal_pixel_gap + i * cnf->pixels_per_led_top, cnf->horizontal_pixel_gap + (i+1) * cnf->pixels_per_led_top,
+				cnf->vertical_pixel_count - cnf->pixels_per_led_top, cnf->vertical_pixel_count - 1,
+				values, d, image, cnf->pixels_to_process, cnf->brightness);
+	}
+
 	XDestroyImage(image);
 }
